@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
+    android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.NetworkFragment">
-    <de.blox.graphview.GraphView
-        android:id="@+id/graph_view"
-        app:lineThickness="5dp"
-        app:lineColor="@color/colorAccent"
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:id="@+id/net1_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</FrameLayout>
+        android:layout_height="wrap_content">
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/net1_cv"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="Network 1"
+                android:fontFamily="@font/cousine_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.card.MaterialCardView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/net2_layout"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/net1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/net2_cv"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="5dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="Network 2"
+                android:fontFamily="@font/cousine_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.card.MaterialCardView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/net2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/net3_cv"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="Network 3"
+                android:fontFamily="@font/cousine_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.card.MaterialCardView>
+    </LinearLayout>
+</RelativeLayout>

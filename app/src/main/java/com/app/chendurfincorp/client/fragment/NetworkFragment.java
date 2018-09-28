@@ -1,43 +1,34 @@
 package com.app.chendurfincorp.client.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.card.MaterialCardView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.app.chendurfincorp.client.R;
-import com.app.chendurfincorp.client.helper.Constants;
-import com.app.chendurfincorp.client.holder.ViewHolder;
+import com.app.chendurfincorp.client.activity.Network1Activity;
+import com.app.chendurfincorp.client.activity.Network2Activity;
+import com.app.chendurfincorp.client.activity.Network3Activity;
+import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
+import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import de.blox.graphview.BaseGraphAdapter;
-import de.blox.graphview.Graph;
-import de.blox.graphview.GraphView;
-import de.blox.graphview.Node;
-import de.blox.graphview.tree.BuchheimWalkerAlgorithm;
-import de.blox.graphview.tree.BuchheimWalkerConfiguration;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.app.chendurfincorp.client.fragment.HomeFragment.listA;
-import static com.app.chendurfincorp.client.fragment.HomeFragment.listB;
-import static com.app.chendurfincorp.client.fragment.HomeFragment.listC;
+import es.dmoral.toasty.Toasty;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NetworkFragment extends Fragment {
 
-    GraphView graphView;
+    MaterialCardView cvNet1, cvNet2, cvNet3;
 
     public NetworkFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,66 +36,28 @@ public class NetworkFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_network, container, false);
 
-        Constants.pref = getActivity().getApplicationContext().getSharedPreferences("CF", MODE_PRIVATE);
-        Constants.editor = Constants.pref.edit();
-        String source = Constants.pref.getString("id", "");
-        graphView = view.findViewById(R.id.graph_view);
+        cvNet1 = view.findViewById(R.id.net1_cv);
+        cvNet2 = view.findViewById(R.id.net2_cv);
+        cvNet3 = view.findViewById(R.id.net3_cv);
 
-        Graph graph = new Graph();
-        Node src = new Node(source);
-        Node nodeA[] = new Node[listA.size()];
-        Node nodeB[] = new Node[listB.size()];
-        Node nodeC[] = new Node[listC.size()];
-        HashMap<String, String> map;
-        nodeA[0]=new Node(listA.get(0).get("A"));
-        graph.addEdge(src,nodeA[0]);
-        nodeB[0]=new Node(listB.get(0).get("B"));
-        graph.addEdge(src,nodeB[0]);
-        nodeC[0]=new Node(listC.get(0).get("C"));
-        graph.addEdge(src,nodeC[0]);
-        int j=0, k=0, m=0;
-        for (int i=1; i<listA.size(); i++){
-            map = listA.get(i);
-            nodeA[i] = new Node(map.get("A"));
-            graph.addEdge(nodeA[j], nodeA[i]);
-            j++;
-        }
-        for (int i=1; i<listB.size(); i++){
-            map = listB.get(i);
-            nodeB[i] = new Node(map.get("B"));
-            graph.addEdge(nodeB[k], nodeB[i]);
-            k++;
-        }
-        for (int i=1; i<listC.size(); i++){
-            map = listC.get(i);
-            nodeC[i] = new Node(map.get("C"));
-            graph.addEdge(nodeC[m], nodeC[i]);
-            m++;
-        }
-
-        BaseGraphAdapter<ViewHolder> adapter = new BaseGraphAdapter<ViewHolder>(getActivity(), R.layout.graph_layout, graph) {
-            @NonNull
+        cvNet1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public ViewHolder onCreateViewHolder(View view) {
-                return new ViewHolder(view);
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Network1Activity.class));
             }
-
+        });
+        cvNet2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onBindViewHolder(ViewHolder viewHolder, Object data, int position) {
-                viewHolder.mTextView.setText(data.toString());
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Network2Activity.class));
             }
-        };
-        graphView.setAdapter(adapter);
-
-        BuchheimWalkerConfiguration configuration = new BuchheimWalkerConfiguration.Builder()
-                .setSiblingSeparation(100)
-                .setLevelSeparation(300)
-                .setSubtreeSeparation(300)
-                .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
-                .build();
-        adapter.setAlgorithm(new BuchheimWalkerAlgorithm(configuration));
-
+        });
+        cvNet3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Network3Activity.class));
+            }
+        });
         return view;
     }
-
 }

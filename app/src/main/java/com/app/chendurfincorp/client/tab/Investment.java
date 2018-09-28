@@ -12,10 +12,10 @@ import com.app.chendurfincorp.client.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TodayFragment extends Fragment {
+public class Investment extends Fragment {
 
 
-    public TodayFragment() {
+    public Investment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class TodayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_today, container, false);
+        return inflater.inflate(R.layout.fragment_investment, container, false);
     }
 
 }

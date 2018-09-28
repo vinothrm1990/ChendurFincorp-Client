@@ -6,24 +6,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.app.chendurfincorp.client.R;
-import com.app.chendurfincorp.client.activity.HomeActivity;
-import com.app.chendurfincorp.client.activity.LoginActivity;
-import com.app.chendurfincorp.client.adapter.TabAdapter;
+import com.app.chendurfincorp.client.adapter.HomeTabAdapter;
 import com.app.chendurfincorp.client.helper.Constants;
-import com.app.chendurfincorp.client.tab.InvestmentFragment;
-import com.app.chendurfincorp.client.tab.TodayFragment;
-import com.app.chendurfincorp.client.tab.TotalFragment;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
@@ -53,9 +44,15 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
     InternetAvailabilityChecker internetAvailabilityChecker;
     TabLayout tabLayout;
     String cusId;
-    public static ArrayList<HashMap<String, String>> listA = new ArrayList<>();
-    public static ArrayList<HashMap<String, String>> listB = new ArrayList<>();
-    public static ArrayList<HashMap<String, String>> listC = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree1A = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree1B = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree1C = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree2A = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree2B = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree2C = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree3A = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree3B = new ArrayList<>();
+    public static ArrayList<HashMap<String, String>> tree3C = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -83,7 +80,7 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = view.findViewById(R.id.pager);
-        final TabAdapter adapter = new TabAdapter(getChildFragmentManager(), tabLayout.getTabCount());
+        final HomeTabAdapter adapter = new HomeTabAdapter(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -106,6 +103,19 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        internetAvailabilityChecker.removeInternetConnectivityChangeListener(this);
+    }
+
+    @Override
+    public void onInternetConnectivityChanged(boolean isConnected) {
+        if (!isConnected) {
+            Toasty.warning(getActivity(), "Check your Network Connection", Toast.LENGTH_LONG, true).show();
+        }
+    }
+
     private class viewNetwork extends AsyncTask<String, Integer, String> {
 
         Context context;
@@ -121,9 +131,15 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            listA.clear();
-            listB.clear();
-            listC.clear();
+            tree1A.clear();
+            tree1B.clear();
+            tree1C.clear();
+            tree2A.clear();
+            tree2B.clear();
+            tree2C.clear();
+            tree3A.clear();
+            tree3B.clear();
+            tree3C.clear();
 
         }
 
@@ -175,16 +191,41 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
 
                             String position = jcat.getString("po");
                             String source = jcat.getString("source");
+                            String type = jcat.getString("tree_type");
 
-                            if (position.startsWith("a")){
-                                map.put("A", source);
-                                listA.add(map);
-                            }else if (position.startsWith("b")){
-                                map.put("B", source);
-                                listB.add(map);
-                            }else if (position.startsWith("c")){
-                                map.put("C", source);
-                                listC.add(map);
+                            if (type.equalsIgnoreCase("1")){
+                                if (position.startsWith("a")){
+                                    map.put("A", source);
+                                    tree1A.add(map);
+                                }else if (position.startsWith("b")){
+                                    map.put("B", source);
+                                    tree1B.add(map);
+                                }else if (position.startsWith("c")){
+                                    map.put("C", source);
+                                    tree1C.add(map);
+                                }
+                            }else if (type.equalsIgnoreCase("2")){
+                                if (position.startsWith("a")){
+                                    map.put("A", source);
+                                    tree2A.add(map);
+                                }else if (position.startsWith("b")){
+                                    map.put("B", source);
+                                    tree2B.add(map);
+                                }else if (position.startsWith("c")){
+                                    map.put("C", source);
+                                    tree2C.add(map);
+                                }
+                            }else if (type.equalsIgnoreCase("3")){
+                                if (position.startsWith("a")){
+                                    map.put("A", source);
+                                    tree3A.add(map);
+                                }else if (position.startsWith("b")){
+                                    map.put("B", source);
+                                    tree3B.add(map);
+                                }else if (position.startsWith("c")){
+                                    map.put("C", source);
+                                    tree3C.add(map);
+                                }
                             }
                         }
 
@@ -198,19 +239,6 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
                 e.printStackTrace();
             }
 
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        internetAvailabilityChecker.removeInternetConnectivityChangeListener(this);
-    }
-
-    @Override
-    public void onInternetConnectivityChanged(boolean isConnected) {
-        if (!isConnected) {
-            Toasty.warning(getActivity(), "Check your Network Connection", Toast.LENGTH_LONG, true).show();
         }
     }
 

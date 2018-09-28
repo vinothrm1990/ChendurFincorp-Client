@@ -3,16 +3,15 @@ package com.app.chendurfincorp.client.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import com.app.chendurfincorp.client.tab.Investment;
+import com.app.chendurfincorp.client.tab.Today;
+import com.app.chendurfincorp.client.tab.Total;
 
-import com.app.chendurfincorp.client.tab.InvestmentFragment;
-import com.app.chendurfincorp.client.tab.TodayFragment;
-import com.app.chendurfincorp.client.tab.TotalFragment;
-
-public class TabAdapter extends FragmentStatePagerAdapter {
+public class HomeTabAdapter extends FragmentStatePagerAdapter {
 
     int mNumOfTabs;
 
-    public TabAdapter(FragmentManager fm, int NumOfTabs) {
+    public HomeTabAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
@@ -22,13 +21,13 @@ public class TabAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                TodayFragment tab1 = new TodayFragment();
+                Today tab1 = new Today();
                 return tab1;
             case 1:
-                InvestmentFragment tab2 = new InvestmentFragment();
+                Investment tab2 = new Investment();
                 return tab2;
             case 2:
-                TotalFragment tab3 = new TotalFragment();
+                Total tab3 = new Total();
                 return tab3;
             default:
                 return null;

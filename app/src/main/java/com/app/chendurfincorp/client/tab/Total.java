@@ -12,10 +12,10 @@ import com.app.chendurfincorp.client.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TotalFragment extends Fragment {
+public class Total extends Fragment {
 
 
-    public TotalFragment() {
+    public Total() {
         // Required empty public constructor
     }
 
