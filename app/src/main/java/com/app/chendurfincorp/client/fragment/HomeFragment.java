@@ -119,6 +119,15 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            listA.clear();
+            listB.clear();
+            listC.clear();
+
+        }
+
+        @Override
         protected String doInBackground(String... strings) {
             String jsonData = null;
             Response response = null;
@@ -160,7 +169,7 @@ public class HomeFragment extends Fragment implements InternetConnectivityListen
                         String data = jonj.getString("message");
                         JSONArray array = new JSONArray(data);
                         for(int i=0; i<array.length(); i++){
-                            JSONObject jcat = array.getJSONObject(0);
+                            JSONObject jcat = array.getJSONObject(i);
 
                             map = new HashMap<>();
 

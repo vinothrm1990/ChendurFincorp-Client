@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Are you sure that you want to logout?"
         android:id="@+id/tv_ratedialog"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="20dp"
