@@ -31,7 +31,7 @@
 
     <TextView
         android:fontFamily="@font/cousine_regular"
-        android:id="@+id/textView"
+        android:id="@+id/navname"
         android:textColor="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

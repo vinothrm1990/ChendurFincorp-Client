@@ -67,15 +67,23 @@ public class HomeActivity extends AppCompatActivity
         title.setTypeface(font);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(title);
-        
+
+        Constants.pref = getApplicationContext().getSharedPreferences("CF",MODE_PRIVATE);
+        Constants.editor = Constants.pref.edit();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        String ename = Constants.pref.getString("name", "");
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+        TextView name = header.findViewById(R.id.navname);
+        name.setText(ename);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_container, new HomeFragment());
