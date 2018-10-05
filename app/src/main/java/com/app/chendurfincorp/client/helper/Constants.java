@@ -20,5 +20,8 @@ public class Constants {
     //pageUrl
     public static String LOGIN= "client_login.php?";
     public static String VIEW_NETWORK= "client_tree.php?";
+    public static String TODAY_REVENUE= "get_daily.php?";
+    public static String INVESTMENT= "get_amount.php?";
+    public static String TOTAL_PROFIT= "total_daily.php?";
 
 }

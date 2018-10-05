@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Network2Activity extends AppCompatActivity implements InternetConne
 
     GraphView graphView;
     InternetAvailabilityChecker internetAvailabilityChecker;
+    LinearLayout nodatafound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +58,11 @@ public class Network2Activity extends AppCompatActivity implements InternetConne
         Constants.editor = Constants.pref.edit();
         String source = Constants.pref.getString("id", "");
         graphView = findViewById(R.id.graph_view);
+        nodatafound = findViewById(R.id.nodatafound);
 
         if (tree2A.size() > 0 || tree2B.size() > 0 || tree2C.size() > 0) {
 
+            nodatafound.setVisibility(View.GONE);
             int j = 0, k = 0, l = 0;
 
             Graph graph = new Graph();
@@ -121,7 +125,10 @@ public class Network2Activity extends AppCompatActivity implements InternetConne
                     .build();
             adapter.setAlgorithm(new BuchheimWalkerAlgorithm(configuration));
 
-        }else graphView.setVisibility(View.GONE);
+        }else {
+            graphView.setVisibility(View.GONE);
+            nodatafound.setVisibility(View.VISIBLE);
+        }
     }
 
         @Override

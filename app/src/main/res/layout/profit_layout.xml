@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#10000000"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".tab.Today">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.design.card.MaterialCardView
-        android:layout_marginTop="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="15dp"
@@ -23,29 +19,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-           <LinearLayout
-               android:layout_marginTop="10dp"
-               android:weightSum="2"
-               android:orientation="horizontal"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-               <TextView
-                   android:gravity="right"
-                   android:layout_weight="1"
-                   android:fontFamily="@font/cousine_bold"
-                   android:text="Source :"
-                   android:textSize="18sp"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"/>
-               <TextView
-                   android:id="@+id/today_src_tv"
-                   android:gravity="center"
-                   android:layout_weight="1"
-                   android:fontFamily="@font/cousine_regular"
-                   android:textSize="18sp"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"/>
-           </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="20dp"
                 android:weightSum="2"
@@ -61,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/today_date_tv"
+                    android:id="@+id/total_date_tv"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:fontFamily="@font/cousine_regular"
@@ -85,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/today_amount_tv"
+                    android:id="@+id/total_amount_tv"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:fontFamily="@font/cousine_regular"
@@ -95,17 +68,4 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.design.card.MaterialCardView>
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AVLoadingIndicatorView"
-            android:visibility="gone"
-            app:indicatorName="BallPulseIndicator"
-            app:indicatorColor="@color/colorPrimaryDark"/>
-    </LinearLayout>
-</FrameLayout>
+</RelativeLayout>

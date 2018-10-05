@@ -15,6 +15,7 @@
             android:theme="@style/Trasnsstatusbartheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,11 +28,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.Network1Activity"
-            android:parentActivityName=".activity.HomeActivity"/>
-        <activity android:name=".activity.Network2Activity"
-            android:parentActivityName=".activity.HomeActivity"/>
-        <activity android:name=".activity.Network3Activity"
-            android:parentActivityName=".activity.HomeActivity"/>
+            android:parentActivityName=".activity.HomeActivity" />
+        <activity
+            android:name=".activity.Network2Activity"
+            android:parentActivityName=".activity.HomeActivity" />
+        <activity
+            android:name=".activity.Network3Activity"
+            android:parentActivityName=".activity.HomeActivity" />
     </application>
 
 </manifest>

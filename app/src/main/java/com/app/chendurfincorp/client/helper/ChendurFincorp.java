@@ -14,7 +14,6 @@ public class ChendurFincorp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         ACRA.init(this);
         InternetAvailabilityChecker.init(this);
     }
@@ -22,14 +21,12 @@ public class ChendurFincorp extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-
         ACRA.init(this);
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-
         InternetAvailabilityChecker.getInstance().removeAllInternetConnectivityChangeListeners();
     }
 }

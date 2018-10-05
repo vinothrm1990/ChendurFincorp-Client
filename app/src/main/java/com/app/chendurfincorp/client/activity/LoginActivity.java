@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity implements InternetConnecti
                         Constants.editor.putString("name", jcat.getString("name"));
                         Constants.editor.putString("username", jcat.getString("username"));
                         Constants.editor.putString("pass", jcat.getString("own_password"));
+                        Constants.editor.putString("address", jcat.getString("address"));
                         Constants.editor.commit();
                         Constants.editor.apply();
 
@@ -162,7 +163,6 @@ public class LoginActivity extends AppCompatActivity implements InternetConnecti
             }catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,4 +11,25 @@
         app:lineColor="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/nodatafound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/no_data"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="Mo Data Found"
+            android:textColor="#000"
+            android:fontFamily="@font/cousine_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

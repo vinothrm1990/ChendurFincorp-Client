@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Network1Activity extends AppCompatActivity implements InternetConne
 
     GraphView graphView;
     InternetAvailabilityChecker internetAvailabilityChecker;
+    LinearLayout nodatafound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +56,14 @@ public class Network1Activity extends AppCompatActivity implements InternetConne
 
         Constants.pref = getApplicationContext().getSharedPreferences("CF", MODE_PRIVATE);
         Constants.editor = Constants.pref.edit();
+
         String source = Constants.pref.getString("id", "");
         graphView = findViewById(R.id.graph_view);
+        nodatafound = findViewById(R.id.nodatafound);
 
         if (tree1A.size()>0||tree1B.size()>0||tree1C.size()>0){
 
+            nodatafound.setVisibility(View.GONE);
             int j=0, k=0, l=0;
 
             Graph graph = new Graph();
@@ -118,7 +123,10 @@ public class Network1Activity extends AppCompatActivity implements InternetConne
                     .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
                     .build();
             adapter.setAlgorithm(new BuchheimWalkerAlgorithm(configuration));
-        }else graphView.setVisibility(View.GONE);
+        }else {
+            graphView.setVisibility(View.GONE);
+            nodatafound.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -134,4 +142,5 @@ public class Network1Activity extends AppCompatActivity implements InternetConne
             Toasty.warning(Network1Activity.this, "Check your Network Connection", Toast.LENGTH_LONG, true).show();
         }
     }
+
 }

@@ -2,11 +2,13 @@ package com.app.chendurfincorp.client.activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.design.widget.NavigationView;
@@ -27,6 +29,7 @@ import android.widget.Toast;
 import com.app.chendurfincorp.client.R;
 import com.app.chendurfincorp.client.fragment.HomeFragment;
 import com.app.chendurfincorp.client.fragment.NetworkFragment;
+import com.app.chendurfincorp.client.fragment.ProfileFragment;
 import com.app.chendurfincorp.client.helper.Constants;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,7 +88,25 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+
+            android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(HomeActivity.this);
+            alertDialog.setTitle("Chendur Fincorp");
+            alertDialog.setMessage("Are you sure you want to Exit?");
+            /*alertDialog.setIcon(R.drawable.exit);*/
+            alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                public void onClick(@NonNull DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.show();
+        }
+        else {
             super.onBackPressed();
         }
     }
@@ -105,7 +126,6 @@ public class HomeActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -125,13 +145,13 @@ public class HomeActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.frame_container, new HomeFragment());
             fragmentTransaction.commit();
         } else if (id == R.id.nav_profile) {
-
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame_container, new ProfileFragment());
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_network) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_container, new NetworkFragment());
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_logout) {
             logoutDialog();
         }
